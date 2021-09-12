@@ -2,11 +2,16 @@ import os
 
 from flask import Flask
 
+from application.core import routes
+
+blueprints = routes.ApplicationBlueprints
+
+
 def create_app(test_config=None):
     # This is factory to create one instance of application
     app = Flask(__name__)
     app.config.from_mapping(
-        SECRET_KEY='dev',   # temporary set to static string. Later it will be credentials
+        SECRET_KEY='dev',  # temporary set to static string. Later it will be credentials
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),  # TODO: change database to postgreSQL
     )
 
@@ -23,9 +28,6 @@ def create_app(test_config=None):
     except:
         pass
 
-    # a simple page to say hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
+    app.register_blueprint(blueprints.projects, url_prefix='/projects')
+    app.register_blueprint(blueprints.index)
     return app
