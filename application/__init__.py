@@ -28,6 +28,6 @@ def create_app(test_config=None):
     except:
         pass
 
-    app.register_blueprint(blueprints.projects, url_prefix='/projects')
-    app.register_blueprint(blueprints.index)
+    app.register_blueprint(blueprints.bpv_projects, url_prefix='/projects')
+    app.register_blueprint(blueprints.bpv_index)
     return app

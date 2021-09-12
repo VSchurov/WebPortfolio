@@ -2,13 +2,13 @@ from flask import Blueprint, render_template, request
 
 
 class ApplicationBlueprints:
-    projects = Blueprint('projects', __name__, template_folder="application/templates")
-    index = Blueprint('index', __name__, template_folder="application/templates")
+    bpv_projects = Blueprint('projects', __name__, template_folder="application/templates")
+    bpv_index = Blueprint('index', __name__, template_folder="application/templates")
 
     # defining projects page url as `http://app/projects/{project}
     # GET method if project exist, POST if you wanna add project
-    @projects.route('/')
-    @projects.route('/{project}/', methods=('GET', 'POST'))
+    @bpv_projects.route('/')
+    @bpv_projects.route('/{project}/', methods=('GET', 'POST'))
     def projects(self, project):
         if request.method == 'GET':
             try:
@@ -16,14 +16,12 @@ class ApplicationBlueprints:
             finally:
                 pass
         else:
-            pass # TODO: create project panel
+            pass  # TODO: create project panel
 
-
-    @index.route('/')
-    @index.route('/index/')
+    @bpv_index.route('/')
+    @bpv_index.route('/index/')
     def index(self):
         try:
             return render_template('index')
         finally:
             return render_template('issues/some_fixes')  # TODO: make tech issues page
-
