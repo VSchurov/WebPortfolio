@@ -2,6 +2,7 @@ class Config(object):
     """Base config for staging cluster"""
     TESTING = False
     DB_SERVER = '192.168.1.228'
+    DEBUG = False
 
     @property
     def DATABASE_URI(self):  #Note: all caps
@@ -18,3 +19,5 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     DATABASE_URI = 'sqlite:///databases/test.db'
+    DEBUG = True
+    TESTING = True

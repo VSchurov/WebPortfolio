@@ -2,9 +2,8 @@ import os
 
 from flask import Flask
 
-from application.core import routes
-
-blueprints = routes.ApplicationBlueprints
+from application.core import routes, blueprints
+from application.core.exceptions import FileExistException
 
 
 def create_app(test_config=None):
@@ -22,12 +21,15 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except:
-        pass
+    # Maybe this check isn't that needed
+    #
+    # # ensure the instance folder exists
+    # try:
+    #     os.makedirs(app.instance_path)
+    # except (FileExistException) as fee:
+    #     raise FileExistException("need to clean this shit", fee, fee.args)
 
     app.register_blueprint(blueprints.bpv_projects, url_prefix='/projects')
     app.register_blueprint(blueprints.bpv_index)
     return app
+
