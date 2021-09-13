@@ -29,6 +29,7 @@ def get_file_paths():
 # 'keys' - all filenames
 # 'values' - all filepaths
 def fill_url_dict(keys: list, values: list):
+    set_url_dict = {}
     # At first we should check does both of lists are similar by size and filled by simultaneous
     # files.
     # if keys.__len__() == values.__len__():
@@ -40,7 +41,17 @@ def fill_url_dict(keys: list, values: list):
     # print(keys.__len__(), values.__len__())
     # print(keys)
     # print(values)
-    return
+    for i in range(values.__len__()):
+        for j in range(keys.__len__()):
+            if(keys[j] in values[j]):
+                pass
+            else:
+                keys[j], keys[i] = keys[i], keys[j]
+    # Finally exposing dictionary
+    zip_iterator = zip(keys, values)
+    set_url_dict = dict(zip_iterator)
+    print(set_url_dict)
+    return set_url_dict
                         # Oh my darling I hear you missed sorts for so long time
 
 
