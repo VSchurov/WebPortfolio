@@ -1,6 +1,7 @@
 from jinja2 import BaseLoader, TemplateNotFound
 from os.path import join, exists, getmtime
 
+
 class MyLoader(BaseLoader):
 
     def __init__(self, path):

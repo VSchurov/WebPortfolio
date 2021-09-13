@@ -5,6 +5,8 @@ from flask import Flask
 
 from application.core import get_blueprints_list
 from application.core.exceptions import FileExistException
+from application.config.jinja import (env,
+                                      MyLoader)
 
 #   This function probably not necessary cause appending to a list of functions done earlier
 # def register_blueprints_in_app():
