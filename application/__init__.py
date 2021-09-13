@@ -1,25 +1,26 @@
 import os
 
 from flask import Flask
+# from werkzeug.serving import run_simple
 
-from application.core import routes, blueprints
+from application.core import get_blueprints_list
 from application.core.exceptions import FileExistException
 
+#   This function probably not necessary cause appending to a list of functions done earlier
+# def register_blueprints_in_app():
+#     bp = get_blueprints_list()
+#     list_blueprints = []
+#     bpv_projects = bp.projects()
+#     list_blueprints.append(bpv_projects)
+#     bpv_index = bp.index()
+#     list_blueprints.append(bpv_index)
+#     return list_blueprints
 
-def create_app(test_config=None):
+
+def create_app():
     # This is factory to create one instance of application
     app = Flask(__name__)
-    app.config.from_mapping(
-        SECRET_KEY='dev',  # temporary set to static string. Later it will be credentials
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),  # TODO: change database to postgreSQL
-    )
-
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
+    app.config.from_pyfile("config/config.py")
 
     # Maybe this check isn't that needed
     #
@@ -29,7 +30,14 @@ def create_app(test_config=None):
     # except (FileExistException) as fee:
     #     raise FileExistException("need to clean this shit", fee, fee.args)
 
-    app.register_blueprint(blueprints.bpv_projects, url_prefix='/projects')
-    app.register_blueprint(blueprints.bpv_index)
+    bp_list = get_blueprints_list()
+
+    for item in bp_list:
+        app.register_blueprint(item)
+
     return app
 
+
+def run_flask():
+    app = create_app()
+    return app
