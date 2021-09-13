@@ -8,3 +8,7 @@ class NotFoundException(BaseException):
 
 class FileExistException(BaseException):
     pass
+
+
+class PageNotFoundError(BaseException):
+    pass
