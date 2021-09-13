@@ -43,7 +43,7 @@ def fill_url_dict(keys: list, values: list):
     # print(values)
     for i in range(values.__len__()):
         for j in range(keys.__len__()):
-            if(keys[j] in values[j]):
+            if (keys[j] in values[j]):
                 pass
             else:
                 keys[j], keys[i] = keys[i], keys[j]
@@ -52,9 +52,8 @@ def fill_url_dict(keys: list, values: list):
     set_url_dict = dict(zip_iterator)
     print(set_url_dict)
     return set_url_dict
-                        # Oh my darling I hear you missed sorts for so long time
+    # Oh my darling I hear you missed sorts for so long time
 
 
 if __name__ == '__main__':
     set_url_temp = fill_url_dict(get_file_names(), get_file_paths())
-

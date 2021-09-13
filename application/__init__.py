@@ -23,7 +23,7 @@ from application.config.jinja import (env as jinja_conf,  # do not use name 'jin
 def create_app():
     # This is factory to create one instance of application
     app = Flask(__name__,
-                template_folder='templates',
+                template_folder='application/templates',
                 )
     app.config.from_pyfile("config/config.py")
 
@@ -54,5 +54,4 @@ def create_app():
     return app
 
 
-
-ignition = create_app()
+# ignition = create_app()
