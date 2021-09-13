@@ -8,7 +8,7 @@ def get_file_names():
     for root, dirs, files in os.walk("."):
         for filename in files:
             if re.match(r'.*\.html', filename):
-                print(filename)
+                # print(filename)
                 filenames_list.append(filename)
     filenames_list.sort()
     return filenames_list
@@ -20,7 +20,7 @@ def get_file_paths():
     for root, dirs, files in os.walk(".", topdown=False):
         for name in files:
             if re.match(r'.*\.html', name):
-                print(os.path.join(root, name))
+                # print(os.path.join(root, name))
                 filepaths_list.append(os.path.join(root, name))
     filepaths_list.sort()
     return filepaths_list
@@ -56,4 +56,5 @@ def fill_url_dict(keys: list, values: list):
 
 
 if __name__ == '__main__':
-    fill_url_dict(get_file_names(), get_file_paths())
+    set_url_temp = fill_url_dict(get_file_names(), get_file_paths())
+
