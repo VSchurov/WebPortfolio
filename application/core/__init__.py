@@ -1,3 +1,5 @@
+from typing import List, Union, Any
+
 from .routes import ApplicationBlueprints
 
 # Variables under this description is the blueprints which in future
@@ -16,7 +18,7 @@ def get_blueprints_list():
     # TODO: we have template for naming (bpv_*) left only func autofill
 
     """
-    blueprints_list = []
+    blueprints_list: list[Union[str, Any]] = []
 
     bpv_projects = abp_instance.projects()
     blueprints_list.append(bpv_projects)
