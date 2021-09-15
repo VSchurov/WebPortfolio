@@ -8,12 +8,17 @@ functions that (will) be represented here:
 `def register_blueprints` :
 
 """
-# from flask import Flask
-#
-# from application.core import get_blueprints_list
-# from application.core.exceptions import FileExistException
-# from application.config.jinja import (env as jinja_conf,  # do not use name 'jinja_env' cause it exist in flask
-#                                       MyLoader)
-#
-# def create_app(config_filename):
-#     app = Flask(__name__)
+from flask import Flask
+
+from application.core import get_blueprints_list
+from application.core.exceptions import FileExistException
+from application.config.jinja import (env as jinja_conf,  # do not use name 'jinja_env' cause it exist in flask
+                                      MyLoader)
+
+def create_app(config_filename):
+    app = Flask(__name__)
+
+    # Some app configuration variables. Can be changed later
+    app.c
+
+    blueprints_list = get_blueprints_list()
