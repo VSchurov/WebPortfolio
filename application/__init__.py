@@ -1,7 +1,14 @@
+import os
+from pathlib import Path
+
 from flask import Flask
 
 def create_app():
     app = Flask(__name__)
-    from .views import index
-    app.register_blueprint(index)
+
+    myfile=Path('sqlite:///application/test.db')
+    try:
+        myfile.exists()
+    finally:
+        from application.db.engine import Session
     return app
